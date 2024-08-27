@@ -1,0 +1,56 @@
+title Exomine sequence
+
+participant main
+participant governers
+participant facilities
+participant inventory
+
+participant database
+
+
+
+main -> governers:get governer choices
+
+governers ->database: get governer data
+database --> governers: give governer data
+
+loop
+governers ->governers:create governer choices
+end
+
+governers --> main:governer choices
+
+main-> facilities:get facilities choices 
+
+facilities -> database:get facilities data
+
+database --> facilities: give facilities data
+
+loop
+facilities ->facilities: create facilities choices
+end
+
+facilities -->main:facility choices
+
+main -> inventory:get inventor to display for selected facility
+
+inventory -> database:get facility inventory data
+database --> inventory:give data for facility inventory
+loop
+inventory ->inventory:create inventory options
+
+end
+inventory --> main:inventory options
+
+
+main-> inventory:get planet inventory to display
+inventory -> database:get planet inventory for selected governer
+database --> inventory:data for inventory
+
+loop
+inventory ->inventory: create list of orders for planet
+
+end
+
+inventory --> main:give planet inventory
+
