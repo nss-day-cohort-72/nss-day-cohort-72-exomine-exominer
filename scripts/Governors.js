@@ -1,9 +1,10 @@
-import data from './database.json';
 
-const { governors } = data;
 
-export const createGovernorDropdown = () => {
-   
+
+export const createGovernorDropdown = async () => {
+
+    const response = await fetch("http://localhost:8088/governors")
+    const governors = await response.json()
     const activeGovernors = governors.filter(governor => governor.active);
     let dropdownHTML = `<select id="governorDropdown">`;
 
@@ -16,4 +17,3 @@ export const createGovernorDropdown = () => {
     return dropdownHTML;
 }
 
-document.getElementById('dropdownContainer').innerHTML = createGovernorDropdown();
