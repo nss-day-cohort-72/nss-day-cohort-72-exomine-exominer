@@ -1,10 +1,11 @@
-import { GovernorsList } from './GovernorsList.js';
+import {Governors} from "./GovernorsList.js"
 
-const container = document.querySelector('#container');
 
-// const render = async () => {
-//     const jeanOwnerShipHTML = OwnJeansChoices()
-//     const locationsHTML = await LocationTypeChoices()
+
+
+const render = async () => {
+    const governorsHTML = await Governors()
+    //     const locationsHTML = await LocationTypeChoices()
 //     const buttonHTML = await SaveSubmission()
 //     const submissionListHTML = await SubmissionList()
 //     container.innerHTML = `${jeanOwnerShipHTML}
@@ -13,4 +14,10 @@ const container = document.querySelector('#container');
 //     ${submissionListHTML}
 
 //     `
-//  }
+    const composedHTML = `
+    ${governorsHTML}
+    `
+    const container = document.querySelector("#container")
+    container.innerHTML = composedHTML
+ }
+ render()
