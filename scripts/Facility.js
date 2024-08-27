@@ -19,7 +19,6 @@ const handleChangeEvent = async (changeEvent) => {
     const facilityInventoryFromSelected = facilityInventory.filter(
       (facility) => facility.facilityID === facilityId
     );
-
     //Grabbing data needed to display using array methods//
     const matchedFacility = facilityInventoryFromSelected.map((facility) => {
       const facilityName = facilities.find(
