@@ -1,6 +1,9 @@
-const render = () => {
+import { createGovernorDropdown } from "./Governors.js";
+
+const render = async () => {
     
-    const governorsHTML = "";
+    const governorsHTML = await createGovernorDropdown();
+
     let html = `
         <header class="header m-4 text-center">
             <h1 class="title">Solar System Mining Marketplace</h1>
@@ -10,7 +13,8 @@ const render = () => {
                 <div class="col-md-6">
                     <div id="governor-choices" class="mb-">
                         <!--GOVERNOR HTML-->
-                        <p class="mt-4 "> this is where governor selection will be</p>
+                        <p class="mt-4 "> governors </p>
+                        ${governorsHTML}
                     </div>
                     <div id="facility-choices" class="">
                         <!--FACILITY INPUT HTML-->
@@ -52,6 +56,6 @@ const render = () => {
         </div>`
         const DOMtarget = document.querySelector("#main-render");
         DOMtarget.innerHTML = html;
-        
+    
 }
 render();
