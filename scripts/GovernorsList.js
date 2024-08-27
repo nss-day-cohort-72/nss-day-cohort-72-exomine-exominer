@@ -1,5 +1,5 @@
 export const Governors = async () => {
-    const response = await fetch(JSONSERVER)
+    const response = await fetch("http://localhost:8088/governors")
     const governors = await response.json()
 
     let html = "<h3>Choose a governor</h3>"
