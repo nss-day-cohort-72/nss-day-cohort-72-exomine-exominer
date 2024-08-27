@@ -1,8 +1,10 @@
+import { FacilityOptions } from "./facilities.js";
 import { createGovernorDropdown } from "./Governors.js";
 import { handleGovernorSelection } from "./Planets.js";
 
 const render = async () => {
     const governorsHTML = await createGovernorDropdown();
+    const facilitiesHTML = await FacilityOptions()
 
     let html = `
        <header class="header m-4 text-center">
@@ -16,7 +18,9 @@ const render = async () => {
                         ${governorsHTML}
                     </div>
                     <div id="facility-choices" class="">
-                        <p class="mt-5"> this is where facility selection will be</p>
+                     
+                        <!--FACILITY INPUT HTML-->
+                        ${facilitiesHTML
                     </div> 
                 </div>
                 <div id="planet-minerals" class=" col-md-4 p-4 mb-4 container-fluid">
