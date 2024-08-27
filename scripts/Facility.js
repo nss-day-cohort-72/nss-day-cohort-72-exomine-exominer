@@ -1,5 +1,7 @@
+import { setFacilityId, setMineralId } from './TransientState.js';
+
 //Callback Function//
-const handleChangeEvent = async (changeEvent) => {
+const showFacilityInventory = async (changeEvent) => {
   //Facility container to be appended to later//
   const random = document.getElementById('random');
   if (changeEvent.target.id === 'facility') {
@@ -39,7 +41,7 @@ const handleChangeEvent = async (changeEvent) => {
 
     const facilitiesHtml = matchedFacility.map((facility) => {
       return `
-                <input type = "radio" name = "minerals" value = ${facility.mineralId}/> ${facility.quantity} tons of ${facility.mineralName}
+                <input type = "radio" name = "minerals" value = "${facility.mineralId}"/> ${facility.quantity} tons of ${facility.mineralName}
       
               `;
     });
@@ -53,7 +55,9 @@ export const Facilities = async () => {
   const response = await fetch('http://localhost:8088/facilities');
   const facilities = await response.json();
 
-  document.addEventListener('change', handleChangeEvent);
+  document.addEventListener('change', showFacilityInventory);
+  document.addEventListener('change', handleMineralSelectionChange);
+  document.addEventListener('change', handleFacilitySelectionChange);
 
   let html = '<h3>Choose a facility</h3>';
 
@@ -79,4 +83,22 @@ const findMatchingMineral = (selectedFacility, mineralsArr) => {
     }
   }
   return matchedMineral;
+};
+
+//Callback for selecting facility//
+
+const handleMineralSelectionChange = (changeEvent) => {
+  if (changeEvent.target.name === 'minerals') {
+    const mineralId = parseInt(changeEvent.target.value);
+    console.log(mineralId);
+
+    setMineralId(mineralId);
+  }
+};
+
+const handleFacilitySelectionChange = (changeEvent) => {
+  if (changeEvent.target.id === 'facility') {
+    const facilityId = parseInt(changeEvent.target.value);
+    setFacilityId(facilityId);
+  }
 };
