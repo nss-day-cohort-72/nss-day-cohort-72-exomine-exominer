@@ -1,4 +1,5 @@
-import {GovernorsList} from "./GovernorsList.js"
+import {Governors} from "./GovernorsList.js"
+
 
 
 // const container = document.querySelector("#container")
@@ -40,3 +41,21 @@ import {GovernorsList} from "./GovernorsList.js"
 //     console.log("State of data has changed. Regenerating HTML...")
 //     render()
 // })
+const render = async () => {
+    const governorsHTML = await Governors()
+    //     const locationsHTML = await LocationTypeChoices()
+//     const buttonHTML = await SaveSubmission()
+//     const submissionListHTML = await SubmissionList()
+//     container.innerHTML = `${jeanOwnerShipHTML} 
+//     ${locationsHTML}
+//     ${buttonHTML}
+//     ${submissionListHTML}
+    
+//     `
+    const composedHTML = `
+    ${governorsHTML}
+    `
+    const container = document.querySelector("#container")
+    container.innerHTML = composedHTML
+ }
+ render()
