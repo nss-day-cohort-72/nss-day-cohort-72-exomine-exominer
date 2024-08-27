@@ -1,4 +1,8 @@
-import { setFacilityId, setMineralId } from './TransientState.js';
+import {
+  setFacilityId,
+  setMineralId,
+  transientStateCopy,
+} from './TransientState.js';
 
 //Callback Function//
 const showFacilityInventory = async (changeEvent) => {
@@ -58,6 +62,7 @@ export const Facilities = async () => {
   document.addEventListener('change', showFacilityInventory);
   document.addEventListener('change', handleMineralSelectionChange);
   document.addEventListener('change', handleFacilitySelectionChange);
+  document.addEventListener('change', showMineralInCart);
 
   let html = '<h3>Choose a facility</h3>';
 
@@ -90,7 +95,6 @@ const findMatchingMineral = (selectedFacility, mineralsArr) => {
 const handleMineralSelectionChange = (changeEvent) => {
   if (changeEvent.target.name === 'minerals') {
     const mineralId = parseInt(changeEvent.target.value);
-    console.log(mineralId);
 
     setMineralId(mineralId);
   }
@@ -101,4 +105,18 @@ const handleFacilitySelectionChange = (changeEvent) => {
     const facilityId = parseInt(changeEvent.target.value);
     setFacilityId(facilityId);
   }
+};
+
+const showMineralInCart = async () => {
+  const para = document.querySelector('.cartItems');
+  const copyOfTransientState = transientStateCopy();
+  const transientMineralId = copyOfTransientState.mineralId;
+
+  const response = await fetch(' http://localhost:8088/minerals');
+  const minerals = await response.json();
+  const matchedMineral = minerals.find(
+    (mineral) => mineral.id === transientMineralId
+  );
+
+  para.innerHTML = `1 ton of ${matchedMineral.name}`;
 };
