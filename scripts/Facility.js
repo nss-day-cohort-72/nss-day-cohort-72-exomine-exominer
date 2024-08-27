@@ -1,7 +1,7 @@
 //Callback Function//
 const handleChangeEvent = async (changeEvent) => {
   //Facility container to be appended to later//
-  const facilityContainer = document.querySelector('.facility-wrapper');
+  const random = document.getElementById('random');
   if (changeEvent.target.id === 'facility') {
     const facilityId = parseInt(changeEvent.target.value);
     //fetch data from facilityInventory//
@@ -47,9 +47,10 @@ const handleChangeEvent = async (changeEvent) => {
               `;
     });
 
-    html += facilitiesHtml;
+    html += facilitiesHtml.join('');
+    random.innerHTML = html;
+
     console.log(html);
-    console.log(facilityContainer);
   }
 };
 //Function to create HTML for facilities
@@ -73,59 +74,6 @@ export const Facilities = async () => {
 
   return html;
 };
-
-//Event listener for changes in selection//
-// document.addEventListener('change', async (e) => {
-//     if (e.target.id === 'facility') {
-//       const facilityId = parseInt(e.target.value);
-//       //fetch data from facilityInventory//
-//       const responseOne = await fetch('http://localhost:8088/facilityInventory');
-//       const facilityInventory = await responseOne.json();
-
-//       //fetch data from facility database//
-//       const responseTwo = await fetch('http://localhost:8088/facilities');
-//       const facilities = await responseTwo.json();
-
-//       //fetch data from minerals database //
-//       const responseThree = await fetch('http://localhost:8088/minerals');
-//       const minerals = await responseThree.json();
-//       //Filter facility inventory selected//
-//       const facilityInventoryFromSelected = facilityInventory.filter(
-//         (facility) => facility.facilityID === facilityId
-//       );
-//       console.log(facilityInventoryFromSelected);
-//       //Grabbing data needed to display using array methods//
-//       const matchedFacility = facilityInventoryFromSelected.map((facility) => {
-//         const facilityName = facilities.find(
-//           (selectedFacility) => selectedFacility.id === facility.facilityID
-//         );
-
-//         return {
-//           facilityName: facilityName.name,
-//           mineralName: findMatchingMineral(facility, minerals).name,
-//           quantity: facility.quantity,
-//           mineralId: facility.mineralID,
-//         };
-//       });
-
-//       console.log(matchedFacility);
-
-//       let html = `
-//       <h2>Facility Minerals for ${matchedFacility[0].facilityName}</h2>
-//       `;
-
-//       const facilitiesHtml = matchedFacility.map((facility) => {
-//         return `
-//             <input type = "radio" name = "minerals" value = ${facility.mineralId}/> ${facility.quantity} tons of ${facility.mineralName}
-
-//           `;
-//       });
-
-//       html += facilitiesHtml;
-//       console.log(html);
-
-//     }
-//   });
 
 //Helper function to find matching mineral//
 const findMatchingMineral = (selectedFacility, mineralsArr) => {

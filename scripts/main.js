@@ -8,7 +8,9 @@ const render = async () => {
   const composedHTML = `
     ${governorsHTML}
     ${facilityHTML}
-    <div class = "facility-wrapper"</div>
+    <div class = "facilityInv"></div>
+    <div id = "random"></div>
+    
     `;
   const container = document.querySelector('#container');
   container.innerHTML = composedHTML;
