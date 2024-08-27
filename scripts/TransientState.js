@@ -1,5 +1,5 @@
 const state = {
-
+   
 }
 
 export const setFacility = (facilityId) => {

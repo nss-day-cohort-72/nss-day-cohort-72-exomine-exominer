@@ -19,7 +19,7 @@ const handleChangeEvent = async (changeEvent) => {
     const facilityInventoryFromSelected = facilityInventory.filter(
       (facility) => facility.facilityID === facilityId
     );
-    console.log(facilityInventoryFromSelected);
+
     //Grabbing data needed to display using array methods//
     const matchedFacility = facilityInventoryFromSelected.map((facility) => {
       const facilityName = facilities.find(
@@ -34,8 +34,6 @@ const handleChangeEvent = async (changeEvent) => {
       };
     });
 
-    console.log(matchedFacility);
-
     let html = `
           <h2>Facility Minerals for ${matchedFacility[0].facilityName}</h2>
           `;
@@ -49,8 +47,6 @@ const handleChangeEvent = async (changeEvent) => {
 
     html += facilitiesHtml.join('');
     random.innerHTML = html;
-
-    console.log(html);
   }
 };
 //Function to create HTML for facilities
