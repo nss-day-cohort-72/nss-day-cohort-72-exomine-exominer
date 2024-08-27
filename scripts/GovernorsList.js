@@ -1,3 +1,5 @@
+import { setGovernorId } from './TransientState.js';
+
 export const Governors = async () => {
   // Fetch data from the server
   const response = await fetch('http://localhost:8088/governors');
@@ -64,5 +66,16 @@ export const Governors = async () => {
     }
   });
 
+  //Event listener for governor selection change//
+
+  document.addEventListener('change', handleGovernorSelectionChange);
+
   return html;
+};
+
+const handleGovernorSelectionChange = (changeEvent) => {
+  if (changeEvent.target.id === 'governor') {
+    const governorId = parseInt(changeEvent.target.value);
+    setGovernorId(governorId);
+  }
 };

@@ -1,24 +1,40 @@
-const colonyState = {
-  colonyId: 0,
-  mineralId: 0,
-  quantity: 0,
-};
+// const colonyState = {
+//   colonyId: 0,
+//   mineralId: 0,
+//   quantity: 0,
+// };
 
-const facilityState = {
+// const facilityState = {
+//   facilityId: 0,
+//   mineralId: 0,
+//   quantity: 0,
+// };
+
+const transientState = {
   facilityId: 0,
   mineralId: 0,
-  quantity: 0,
+  governorId: 0,
+  quantity: 1,
 };
 
-export const setFacility = (facilityId) => {
-  facilityState.selectedFacility = facilityId;
-  console.log(facilityState);
+export const setFacilityId = (chosenOption) => {
+  transientState.facilityId = chosenOption;
+  console.log(transientState);
 };
 
+export const setGovernorId = (chosenOption) => {
+  transientState.governorId = chosenOption;
+  console.log(transientState);
+};
 
+export const setMineralId = (chosenOption) => {
+  transientState.mineralId = chosenOption;
+  console.log(transientState);
+};
 
-
-
+export const transientStateCopy = () => {
+  return { ...transientState };
+};
 
 export const purchaseMineral = () => {
   /*
