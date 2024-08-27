@@ -1,6 +1,9 @@
+import { createGovernorDropdown } from "./Governors.js";
+
 const render = () => {
     
-    const governorsHTML = "";
+    const governorsHTML = createGovernorDropdown = () => {}
+;
     let html = `
         <header class="header m-4 text-center">
             <h1 class="title">Solar System Mining Marketplace</h1>
@@ -52,6 +55,6 @@ const render = () => {
         </div>`
         const DOMtarget = document.querySelector("#main-render");
         DOMtarget.innerHTML = html;
-        
+    
 }
 render();
